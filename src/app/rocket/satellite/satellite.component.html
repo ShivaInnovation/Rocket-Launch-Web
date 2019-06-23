@@ -1,0 +1,43 @@
+<h4 class="display-4">Satellite</h4>
+<hr>
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+  <input type="hidden" name="Id" #id="ngModel" [(ngModel)]="formdata.Id"> 
+  <input type="hidden" name="RocketId" #RocketId="ngModel" [(ngModel)]="formdata.RocketId"> 
+  <input type="hidden" name="CreatedTime" #CreatedTime="ngModel" [(ngModel)]="formdata.CreatedTime"> 
+  <input type="hidden" name="LastUpdatedTime" #LastUpdatedTime="ngModel" [(ngModel)]="formdata.LastUpdatedTime"> 
+  <input type="hidden" name="CreatedBy" #CreatedBy="ngModel" [(ngModel)]="formdata.CreatedBy"> 
+  <input type="hidden" name="LastUpdatedBy" #LastUpdatedBy="ngModel" [(ngModel)]="formdata.LastUpdatedBy"> 
+  <input type="hidden" name="SatelliteNo" #SatelliteNo="ngModel" [(ngModel)]="formdata.SatelliteNo">
+  <div class="form-group">
+    <label>Satellite Name</label>
+    <div class="input-group">
+        <div class="input-group-prepared">
+          <div class="input-group-text">#</div>
+        </div>
+        <input name="SatelliteName" #SatelliteName="ngModel" [(ngModel)]="formdata.SatelliteName" class="form-control">
+    </div>
+  </div>
+  <div class="form-group">
+      <label>Category</label>
+      <select class="form-control" name="Category" #Category="ngModel" [(ngModel)]="formdata.Category">
+        <option value="0">-Select-</option>
+        <option *ngFor="let item of categoryList" value="{{item.Name}}">{{item.Name}}</option>
+      </select>      
+  </div>
+ 
+  <div class="form-group">
+        <label>Description</label>
+        <div class="input-group">
+              <div class="input-group-prepared">
+                <div class="input-group-text">#</div>
+              </div>
+              <input name="Description" #Description="ngModel" [(ngModel)]="formdata.Description" class="form-control">
+        </div>
+  </div>
+  <div class="col-md-6">
+      <div class="form-group">
+        <button type="submit" class="btn btn-dark"><i class="fa fa-cart-plus"></i> Submit</button>
+        <button type="submit" class="btn btn-outline-dark ml-1" [mat-dialog-close]><i class="fa fa-close"></i> Close</button>
+      </div>
+  </div>
+</form>

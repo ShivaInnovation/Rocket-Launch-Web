@@ -1,0 +1,86 @@
+<form #form="ngForm" autocomplete="off" (submit)="onSubmit(form)">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label>Rocket No.</label>
+        <div class="input-group">
+          <div class="input-group-prepared">
+            <div class="input-group-text">#</div>
+          </div>
+          <input name="RocketNo" #RocketNo="ngModel" [(ngModel)]="rocketService.formData.RocketNo" class="form-control">
+        </div>
+      </div>
+
+      <div class="form-group">
+          <label>Rocket Name.</label> 
+          <div class="input-group">
+            <div class="input-group-prepared">
+              <div class="input-group-text">#</div>              
+            </div>
+            <input name="RocketName" #RocketName="ngModel" [(ngModel)]="rocketService.formData.RocketName" class="form-control"> 
+          </div>
+      </div>
+    </div>
+    <div class="col-md-6"> 
+        <div class="form-group">
+            <label>Rocket Path</label>
+            <div class="input-group">
+              <div class="input-group-prepared">
+                <div class="input-group-text">#</div>
+              </div>
+              <input name="Path" #Path="ngModel" [(ngModel)]="rocketService.formData.Path" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Rocket Destination</label>
+            <div class="input-group">
+              <div class="input-group-prepared">
+                <div class="input-group-text">#</div>
+              </div>
+              <input name="Destination" #Destination="ngModel" [(ngModel)]="rocketService.formData.Destination" class="form-control">
+            </div>
+        </div>
+    </div>    
+  </div>
+
+  <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <button type="submit" class="btn btn-info"><i class="fa fa-cart-plus"></i> Launch</button>          
+        </div>
+      </div>
+
+      <div class="col-md-4"></div>
+      <div class="col-md-2">
+          <div class="form-group">
+              <a class="btn btn-danger" (click)="AddEditSatellite(null, rocketService.formData.Id)"><i class="fa fa-plus"></i>Add Satellite</a>
+            </div>
+      </div>
+  </div>
+
+  <table class="table">
+    <thead class="thead-blue-light">
+      <th scope="col">Satellite No</th>
+      <th scope="col">Satellite Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Description</th>
+      <th scope="col">Action</th>
+    </thead>
+    <tbody>
+      <tr *ngIf="rocketService.satellites.length ==0">
+        <td class="font-italic text-center" colspan="5">
+          No satellite loaded for this rocket.
+        </td>
+      </tr>
+      <tr *ngFor="let item of rocketService.satellites; let i=index;">
+        <td>{{item.SatelliteNo}}</td>
+        <td>{{item.SatelliteName}}</td>
+        <td>{{item.Category}}</td>
+        <td>{{item.Description}}</td>
+        <td>
+          <a class="btn btn-sm btn-info text-white" (click)="AddEditSatellite(i, rocketService.satellites.RocketId)"><i class="fa fa-edit" style="font-size:24px"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</form>
